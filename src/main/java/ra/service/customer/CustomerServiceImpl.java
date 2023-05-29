@@ -2,6 +2,7 @@ package ra.service.customer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ra.model.Customer;
@@ -17,6 +18,7 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Override
     public Iterable<Customer> finAll() {
+
         return customerRepository.findAll();
     }
 
@@ -37,6 +39,7 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Override
     public Page<Customer> findAll(Pageable pageable) {
+        pageable= PageRequest.of(pageable.getPageNumber(), 5);
         return customerRepository.findAll(pageable);
     }
 
